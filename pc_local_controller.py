@@ -1171,6 +1171,23 @@ class LocalVisionEngine:
         }
 
     def _process_fps(self, rgb: np.ndarray, frame: np.ndarray) -> Dict[str, Any]:
+        """
+        Modo FPS (Gesto Manual de Arma / Hand Gun Raycasting):
+        ------------------------------------------------------------------------
+        1. Raycasting do Cano da Arma (Dedo Indicador):
+           - Nó 8 (ponta do indicador) rastreado no espaço de tela normalizado [0.0 a 1.0].
+           - Cálculo de delta temporal com proteção anti-teletransporte (> 12% da tela descarta ruídos de troca de mão).
+           - Zona morta contínua calibrada (0.0032) para neutralizar tremores da mão no ar.
+           - Filtro adaptativo (EMA): alpha responsivo (0.85 para movimentos rápidos, 0.60 para mira cirúrgica).
+           - Acumulador subpixel que preserva restos fracionários para movimentação do ponteiro sem perda de precisão.
+        2. Gatilho Mecânico de Disparo (Dedo Médio):
+           - Mede a contração do nó 12 (ponta do dedo médio) em relação ao nó 9 (nó MCP) normalizada pela palma.
+           - Movimento brusco de fechamento (< 0.60 do comprimento) aciona o clique do Mouse 1 (Disparo).
+           - Supressão de recuo óptico: congela micro-oscilações da mira por 2 frames logo após o gatilho.
+        3. Mira Telescópica (Zoom):
+           - Abdução vertical do polegar (nó 4 elevado em relação ao nó 2) ativa o clique do Mouse 2 (Zoom).
+        ------------------------------------------------------------------------
+        """
         detector = self.detectors.hand_detector
         if not detector:
             return {"modo": "fps", "detect": False, "mouse_dx": 0, "mouse_dy": 0}
@@ -1594,6 +1611,29 @@ class LocalVisionEngine:
         }
 
     def _process_gestual(self, rgb: np.ndarray, frame: np.ndarray) -> Dict[str, Any]:
+        """
+        Modo Gestual (Volante Gamer Virtual de Alta Precisão):
+        ------------------------------------------------------------------------
+        1. Rastreamento Biomecânico de Mãos:
+           - Utiliza o MediaPipe HandLandmarker para detectar os 21 marcos esqueléticos de até 2 mãos.
+           - Extrai a posição dos nós 0 (pulsos) e ordena geometricamente no eixo X para identificar
+             a mão esquerda e a mão direita na perspectiva do condutor.
+        2. Cinemática Angular do Volante:
+           - Calcula o vetor delta dx = (wrist_right.x - wrist_left.x) e dy = (wrist_right.y - wrist_left.y).
+           - Determina o ângulo de esterçamento em graus: raw_angle = atan2(dy, dx) * (180 / pi).
+           - Aplica filtro exponencial (EMA) para suavizar oscilações e tremores involuntários das mãos no ar.
+        3. Centralização Temporal (Dwell Timer 0.3s - Sem Zona Morta Rígida):
+           - Em vez de uma zona morta estática artificial (que gera folga e perda de sensibilidade em curvas sutis),
+             utiliza um cronômetro de permanência: se as mãos ficarem dentro da faixa guia central (+-2.5 deg)
+             por 0.3 segundos contínuos (300ms), a saída é travada em 'centro' (0.0 deg).
+           - Isso replica de forma ultra-realista o comportamento de autocentralização e retorno de um volante real.
+        4. Aceleração e Frenagem Independentes por Polegares (👍):
+           - Nó 4 (ponta do polegar) avaliado em relação à altura da palma:
+             * Polegar direito levantado: Aceleração contínua (Tecla W / Gatilho RT).
+             * Polegar esquerdo levantado: Freio / Marcha à ré (Tecla S / Gatilho LT).
+           - Exclusão Mútua: Impede acionamento cruzado simultâneo de freio e acelerador por ruídos ópticos.
+        ------------------------------------------------------------------------
+        """
         detector = self.detectors.hand_detector
         if not detector:
             return {"modo": "gestual", "detect": False, "angulo": 0.0}
@@ -1710,6 +1750,24 @@ class LocalVisionEngine:
         }
 
     def _process_fight(self, rgb: np.ndarray, frame: np.ndarray) -> Dict[str, Any]:
+        """
+        Modo Luta (Brawler Corporal / Stick Fight The Game):
+        ------------------------------------------------------------------------
+        1. Rastreamento Esquelético Tridimensional:
+           - Utiliza o MediaPipe PoseLandmarker (33 marcos corporais).
+           - Extrai os ombros (11, 12), pulsos (15, 16) e quadris (23, 24).
+        2. Defesa em Cruz ("X" Guard):
+           - Calcula a distância euclidiana entre os pulsos direito e esquerdo.
+           - Proximidade dos punhos (< 0.12) elevados em frente ao peitoral ativa Tecla V (Bloqueio).
+        3. Ataque / Soco:
+           - Mede a extensão relativa dos braços calculando a distância entre ombros e pulsos.
+           - Extensão rápida superior a 38% da escala corporal ativa Tecla C (Golpe/Soco).
+        4. Esquiva Lateral de Tronco (Sway):
+           - Mede o desvio angular do segmento entre os ombros para ativar Teclas A (Esq) e D (Dir).
+        5. Pulo Físico:
+           - Monitora a velocidade vertical e elevação do centro dos quadris para ativar Tecla W / Pulo.
+        ------------------------------------------------------------------------
+        """
         detector = self.detectors.pose_detector
         if not detector:
             return {"modo": "luta", "detect": False}

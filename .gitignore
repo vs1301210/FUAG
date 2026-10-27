@@ -1,0 +1,62 @@
+# ==============================================================================
+# FUAG - Arquivo de Ignorados do Git (.gitignore)
+# ==============================================================================
+
+# Executáveis binários e compilações pesadas (excedem limites do GitHub e contêm caminhos locais)
+*.exe
+!tools/adb/adb.exe
+*.apk
+apks/*.apk
+build/
+dist/
+mobile_controller/build/
+
+# Ambientes Virtuais Python
+venv/
+env/
+.env/
+ENV/
+
+# Python Bytecode e Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Arquivos de log e configurações locais de usuário
+*.log
+*.tmp
+*config.json
+testes/
+
+# Flutter / Dart
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugin-dependencies
+mobile_controller/.dart_tool/
+mobile_controller/.flutter-plugins
+mobile_controller/.flutter-plugin-dependencies
+mobile_controller/.packages
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+
+# Gradle / Android Studio
+.gradle/
+local.properties
+captures/
+*.rej
+
+# IDEs e Editores
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+# Arquivos do Sistema Operacional
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store

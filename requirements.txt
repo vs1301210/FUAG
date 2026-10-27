@@ -1,0 +1,25 @@
+# ==============================================================================
+# FUAG - Universal AI Controller & Computer Vision
+# Dependências do Ambiente Python (Bridge de Rede e Controlador Local PC)
+# ==============================================================================
+
+# Visão Computacional e Inteligência Artificial Local (MediaPipe Tasks)
+mediapipe>=0.10.14
+opencv-python>=4.8.0
+numpy>=1.24.0
+
+# Emulação de Controles Físicos no Windows (Xbox 360 XInput e PS4 DualShock 4)
+# Requer o driver ViGEmBus instalado no Windows (incluso em tools/ViGEmBusSetup_x64.msi)
+vgamepad>=0.1.0; sys_platform == 'win32'
+
+# Injeção de Teclado e Mouse Gamer de Baixa Latência (DirectInput)
+PyDirectInput>=1.0.4; sys_platform == 'win32'
+
+# Processamento de Imagens e Ícones do Sistema
+pillow>=10.0.0
+
+# Bandeja do Sistema (System Tray Icon) para Execução em Segundo Plano
+pystray>=0.19.5
+
+# Empacotador e Compilador de Executáveis Portáteis (.EXE)
+pyinstaller>=6.0.0

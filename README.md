@@ -1,4 +1,4 @@
-# 🎮 FUAG - Full Universal Accessibility Gamepad
+# 🎮 FUAG - Ferramenta Universal de Acessibilidade em Games
 ### *Suíte Universal de Controle Gamer por Visão Computacional, IA Local e Acessibilidade Severa*
 
 [![Python Version](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
@@ -7,7 +7,7 @@
 [![ViGEmBus](https://img.shields.io/badge/Driver-ViGEmBus%201.17%2B-00B4D8.svg)](https://github.com/nefarius/ViGEmBus)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-O **FUAG** (*Full Universal Accessibility Gamepad*) é uma solução de tecnologia assistiva e gamer que transforma câmeras comuns (webcams, sensores infravermelho Windows Hello e smartphones Android) em **dispositivos de entrada físicos reais** (Controle Oficial de Xbox 360, PlayStation 4 DualShock 4 e Teclado/Mouse DirectInput de ultra-baixa latência) para jogos de PC (Steam, Xbox Game Pass, Need for Speed, Counter-Strike, emuladores e simuladores), sem exigir nenhum hardware especializado caro.
+O **FUAG** (*Ferramenta Universal de Acessibilidade em Games*) é uma solução de tecnologia assistiva e gamer que transforma câmeras comuns (webcams, sensores infravermelho Windows Hello e smartphones Android) em **dispositivos de entrada físicos reais** (Controle Oficial de Xbox 360, PlayStation 4 DualShock 4 e Teclado/Mouse DirectInput de ultra-baixa latência) para jogos de PC (Steam, Xbox Game Pass, Need for Speed, Counter-Strike, emuladores e simuladores), sem exigir nenhum hardware especializado caro.
 
 ---
 

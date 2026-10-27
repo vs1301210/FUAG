@@ -1,12 +1,12 @@
 @echo off
 chcp 65001 > nul
-title FUAG - Universal Mobile Controller Suite
+title FUAG - Ferramenta Universal de Acessibilidade em Games
 
 :MENU
 cls
-echo ========================================================
-echo       🎮 FUAG - UNIVERSAL MOBILE CONTROLLER SUITE
-echo ========================================================
+echo ======================================================================
+echo       🎮 FUAG - FERRAMENTA UNIVERSAL DE ACESSIBILIDADE EM GAMES
+echo ======================================================================
 echo.
 echo [1] Iniciar Bridge em Segundo Plano (.EXE - System Tray / Toast)
 echo [2] Iniciar Bridge com Interface Gráfica (.EXE --gui)

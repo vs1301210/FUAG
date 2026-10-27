@@ -1,9 +1,9 @@
 @echo off
 chcp 65001 > nul
-title FUAG - Instalador do Ambiente
+title FUAG - Ferramenta Universal de Acessibilidade em Games (Setup)
 
 echo ======================================================================
-echo       🎮 FUAG - UNIVERSAL AI CONTROLLER SUITE (INSTALADOR WINDOWS)
+echo   🎮 FUAG - FERRAMENTA UNIVERSAL DE ACESSIBILIDADE EM GAMES (SETUP)
 echo ======================================================================
 echo.
 

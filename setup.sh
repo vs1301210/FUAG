@@ -16,7 +16,7 @@ C_RED="\033[31m"
 
 echo -e "${C_CYAN}${C_BOLD}"
 echo "======================================================================"
-echo "      🎮 FUAG - UNIVERSAL AI CONTROLLER SUITE (INSTALADOR)           "
+echo "  🎮 FUAG - FERRAMENTA UNIVERSAL DE ACESSIBILIDADE EM GAMES (SETUP)   "
 echo "======================================================================"
 echo -e "${C_RESET}"
 
